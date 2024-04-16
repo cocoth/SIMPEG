@@ -5,9 +5,10 @@ import Image from "next/image";
 export default function Home() {
   return (
     <main>
-      <section className="flex">
-        <SideBar />
-        <Navbar />
+      <section className="m-3">
+        <h1>
+          test page
+        </h1>
       </section>
     </main>
   );
