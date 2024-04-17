@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <main>
       <section className="px-2 py-3 bg-[#f8f9fe]">
-        <div className="bg-white flex flex-col shadow-md border-2 rounded-lg border-blue-500  ">
+        {/* <div className="bg-white flex flex-col shadow-md border-2 rounded-lg border-blue-500  ">
           <div className="flex flex-col mx-3 my-3">
             <div className="flex justify-between">
               <div className="px-3 py-1">
@@ -34,7 +34,7 @@ export default function Home() {
               />
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="bg-white my-4 flex flex-col shadow-md border-2 border-blue-500 rounded-lg">
           <div className="overflow-x-auto mx-3 my-3">
             <DataTable columns={columns} data={data} />

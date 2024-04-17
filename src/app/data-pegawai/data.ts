@@ -6,5 +6,5 @@ export const data: dataPegawai[] = [...Array(10)].map((_, i) => ({
   gender: "Laki-Laki",
   no_telp: "098765432123456",
   email: `suprianto.${i + 1}@test.com`,
-  status: "Aktif",
+  status: i === 3 ? "Tidak Aktif" : "Aktif",
 }));

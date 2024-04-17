@@ -76,6 +76,18 @@ export const columns: ColumnDef<dataPegawai>[] = [
     header: "Status",
   },
   {
+    accessorKey: "email",
+    header: "Email",
+  },
+  {
+    header: "Status",
+    cell: ({ row }) => {
+      const status = row.original.status;
+      const isActive = status === "Aktif" ? "text-green-500" : "text-red-600";
+      return <p className={isActive}>{status}</p>;
+    },
+  },
+  {
     id: "actions",
     cell: ({ row }) => {
       const data = row.original;

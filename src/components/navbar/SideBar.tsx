@@ -5,9 +5,27 @@ import { IoIosPeople } from "react-icons/io";
 
 const SideBar = () => {
   const path = usePathname();
+  const items = [
+    {
+      title: "Absensi",
+      link: "/absensi",
+    },
+    {
+      title: "Data Pegawai",
+      link: "/data-pegawai",
+    },
+    {
+      title: "Kalkulasi Gaji",
+      link: "/kalkulasi",
+    },
+    {
+      title: "Tambah Pegawai",
+      link: "/tambah-pegawai",
+    },
+  ];
 
   return (
-    <aside className="bg-preset sticky min-h-screen w-max">
+    <aside className="min-h-screen w-max bg-preset">
       <section className="flex flex-col justify-center mx-3 font-ubuntu">
         <div className="flex items-center gap-2 font-bold text-2xl text-white my-2 py-2">
           <IoIosPeople className="text-2xl" />
@@ -15,33 +33,16 @@ const SideBar = () => {
         </div>
         <div className="h-1 w-full bg-white rounded" />
         <div className="grid grid-flow-row w-max gap-2 my-2 capitalize text-white text-lg ">
-          <Link
-            href={`/absensi`}
-            className={`rounded-xl py-1 px-2 ${
-              path === "/absensi"
-                ? "bg-white text-preset "
-                : "border text-white"
-            }`}>
-            Absensi
-          </Link>
-          <Link
-            href={`/data-pegawai`}
-            className={`rounded-xl py-1 px-2 ${
-              path === "/data-pegawai"
-                ? "bg-white text-preset"
-                : "border text-white"
-            }`}>
-            Data Pegawai
-          </Link>
-          <Link
-            href={`/kalkulasi`}
-            className={`rounded-xl py-1 px-2 ${
-              path === "/kalkulasi"
-                ? "bg-white text-preset"
-                : "border text-white"
-            }`}>
-            Kalkulasi Gaji
-          </Link>
+          {items.map((item, i) => (
+            <Link
+              key={i}
+              href={item.link}
+              className={`rounded-xl py-1 px-2 hover:bg-gray-200 hover:text-preset border ${
+                path === item.link ? "bg-white text-preset " : "text-white"
+              }`}>
+              {item.title}
+            </Link>
+          ))}
         </div>
       </section>
     </aside>
