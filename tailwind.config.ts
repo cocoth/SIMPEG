@@ -1,13 +1,13 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
-	],
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
+  ],
   prefix: "",
   theme: {
     container: {
@@ -19,17 +19,18 @@ const config = {
     },
     extend: {
       fontFamily: {
-        'poppins': ["var(--font-poppins)"],
-        'fjallaOne': ["var(--font-fajllaOne)"],
-        'ubuntu': ["var(--font-ubuntu)"],
-        'lobster': ["var(--font-lobster)"],
+        poppins: ["var(--font-poppins)"],
+        fjallaOne: ["var(--font-fajllaOne)"],
+        ubuntu: ["var(--font-ubuntu)"],
+        lobster: ["var(--font-lobster)"],
       },
       colors: {
-        preset:{
+        preset: {
           DEFAULT: "#7AA2E3",
           primary: "#6AD4DD",
           secondary: "#97E7E1",
-          bright: "#F8F6E3"
+          bright: "#F8F6E3",
+          primaryBg: "0000FF",
         },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -87,6 +88,6 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;
