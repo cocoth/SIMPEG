@@ -42,6 +42,7 @@ export default function Home() {
                   <th className="px-4 py-2">Nama</th>
                   <th className="px-4 py-2">Gender</th>
                   <th className="px-4 py-2">No.Telp</th>
+                  <th className="px-4 py-2">Email</th>
                   <th className="px-4 py-2">Status</th>
                   <th className="px-4 py-2">Aksi</th>
                 </tr>
@@ -53,6 +54,7 @@ export default function Home() {
                     <td className="px-4 py-2">{item.nama}</td>
                     <td className="px-4 py-2">{item.gender}</td>
                     <td className="px-4 py-2">{item.no_telp}</td>
+                    <td className="px-4 py-2">{item.email}</td>
                     <td className="px-4 py-2">{item.status}</td>
                     <td className="px-4 py-2">
                       <button className="px-3 py-1 bg-blue-500 text-white rounded">
