@@ -1,74 +1,9 @@
-const Data = [
-  {
-    nip: 1,
-    nama: "Sutejo",
-    gender: "Laki-laki",
-    telephone: "0892781231233",
-    status: "Aktif",
-  },
-  {
-    nip: 2,
-    nama: "Sutejo",
-    gender: "Laki-laki",
-    telephone: "0892781231233",
-    status: "Aktif",
-  },
-  {
-    nip: 3,
-    nama: "Sutejo",
-    gender: "Laki-laki",
-    telephone: "0892781231233",
-    status: "Aktif",
-  },
-  {
-    nip: 4,
-    nama: "Sutejo",
-    gender: "Laki-laki",
-    telephone: "0892781231233",
-    status: "Aktif",
-  },
-  {
-    nip: 5,
-    nama: "Sutejo",
-    gender: "Laki-laki",
-    telephone: "0892781231233",
-    status: "Aktif",
-  },
-  {
-    nip: 6,
-    nama: "Sutejo",
-    gender: "Laki-laki",
-    telephone: "0892781231233",
-    status: "Aktif",
-  },
-  {
-    nip: 7,
-    nama: "Sutejo",
-    gender: "Laki-laki",
-    telephone: "0892781231233",
-    status: "Aktif",
-  },
-  {
-    nip: 8,
-    nama: "Sutejo",
-    gender: "Laki-laki",
-    telephone: "0892781231233",
-    status: "Aktif",
-  },
-  {
-    nip: 9,
-    nama: "Sutejo",
-    gender: "Laki-laki",
-    telephone: "0892781231233",
-    status: "Aktif",
-  },
-  {
-    nip: 10,
-    nama: "Sutejo",
-    gender: "Laki-laki",
-    telephone: "0892781231233",
-    status: "Aktif",
-  },
-];
+import { dataPegawai } from "../../../type";
 
-export default Data;
+export const data: dataPegawai[] = [...Array(10)].map((_, i) => ({
+  no: i + 1,
+  nama: `suprianto ${i + 1}`,
+  gender: "Laki-Laki",
+  no_telp: "098765432123456",
+  status: "Aktif",
+}));

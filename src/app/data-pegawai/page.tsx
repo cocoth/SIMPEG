@@ -2,12 +2,9 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import Data from "./data";
+import { data } from "./data";
 
 export default function Home() {
-  const handleAddButton = () => {
-    setData(Data);
-  };
   return (
     <main>
       <section className="px-2 py-3 bg-[#f8f9fe]">
@@ -19,9 +16,7 @@ export default function Home() {
                   List Pegawai
                 </h3>
               </div>
-              <Button
-                className="bg-blue-700 px-3 py-1 text-md font-ubuntu font-semibold text-white tracking-wide cursor-pointer rounded-sm"
-                onClick={handleAddButton}>
+              <Button className="bg-blue-700 px-3 py-1 text-md font-ubuntu font-semibold text-white tracking-wide cursor-pointer rounded-sm">
                 Add
               </Button>
             </div>
@@ -45,6 +40,7 @@ export default function Home() {
               <thead className="bg-white">
                 <tr>
                   <th className="px-4 py-2 w-32">No</th>
+                  <th className="px-4 py-2">No</th>
                   <th className="px-4 py-2">Nama</th>
                   <th className="px-4 py-2">Gender</th>
                   <th className="px-4 py-2">No.Telp</th>
@@ -53,12 +49,12 @@ export default function Home() {
                 </tr>
               </thead>
               <tbody>
-                {Data.map((item, index) => (
+                {data.map((item, index) => (
                   <tr key={index} className="bg-gray-100">
-                    <td className="px-4 py-2">{item.nip}</td>
+                    <td className="px-4 py-2">{item.no}</td>
                     <td className="px-4 py-2">{item.nama}</td>
                     <td className="px-4 py-2">{item.gender}</td>
-                    <td className="px-4 py-2">{item.telephone}</td>
+                    <td className="px-4 py-2">{item.no_telp}</td>
                     <td className="px-4 py-2">{item.status}</td>
                     <td className="px-4 py-2">
                       <Button className="px-3 py-1 bg-blue-500 ">Edit</Button>
