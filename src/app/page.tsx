@@ -5,11 +5,7 @@ import Image from "next/image";
 export default function Home() {
   return (
     <main>
-      <section className="m-3">
-        <h1>
-          test page
-        </h1>
-      </section>
+      <section className="px-2 py-3 bg-[#f8f9fe]">test page</section>
     </main>
   );
 }
