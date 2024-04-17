@@ -37,7 +37,43 @@ export default function Home() {
         </div> */}
         <div className="bg-white my-4 flex flex-col shadow-md border-2 border-blue-500 rounded-lg">
           <div className="overflow-x-auto mx-3 my-3">
+<<<<<<< HEAD
             <DataTable columns={columns} data={data} />
+=======
+            <table className="table-fixed w-full text-left">
+              <thead className="bg-white">
+                <tr>
+                  <th className="px-4 py-2">No</th>
+                  <th className="px-4 py-2">Nama</th>
+                  <th className="px-4 py-2">Gender</th>
+                  <th className="px-4 py-2">No.Telp</th>
+                  <th className="px-4 py-2">Email</th>
+                  <th className="px-4 py-2">Status</th>
+                  <th className="px-4 py-2">Aksi</th>
+                </tr>
+              </thead>
+              <tbody>
+                {data.map((item, index) => (
+                  <tr key={index} className="bg-gray-100">
+                    <td className="px-4 py-2">{item.no}</td>
+                    <td className="px-4 py-2">{item.nama}</td>
+                    <td className="px-4 py-2">{item.gender}</td>
+                    <td className="px-4 py-2">{item.no_telp}</td>
+                    <td className="px-4 py-2">{item.email}</td>
+                    <td className="px-4 py-2">{item.status}</td>
+                    <td className="px-4 py-2">
+                      <button className="px-3 py-1 bg-blue-500 text-white rounded">
+                        Edit
+                      </button>
+                      <button className="px-3 py-1 bg-red-500 text-white rounded ml-2">
+                        Hapus
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+>>>>>>> 00dbc2a (add reusable features Table Component)
           </div>
         </div>
       </section>
