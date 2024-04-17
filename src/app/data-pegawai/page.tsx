@@ -4,6 +4,10 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { data } from "./data";
 
+// Data Table
+import { Payment, columns } from "./columns";
+import { DataTable } from "./data-table";
+
 export default function Home() {
   return (
     <main>
@@ -36,36 +40,7 @@ export default function Home() {
         </div>
         <div className="bg-white my-4 flex flex-col shadow-md border-2 border-blue-500 rounded-lg">
           <div className="overflow-x-auto mx-3 my-3">
-            <table className="table-fixed w-full text-left">
-              <thead className="bg-white">
-                <tr>
-                  <th className="px-4 py-2 w-32">No</th>
-                  <th className="px-4 py-2">No</th>
-                  <th className="px-4 py-2">Nama</th>
-                  <th className="px-4 py-2">Gender</th>
-                  <th className="px-4 py-2">No.Telp</th>
-                  <th className="px-4 py-2">Status</th>
-                  <th className="px-4 py-2">Aksi</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data.map((item, index) => (
-                  <tr key={index} className="bg-gray-100">
-                    <td className="px-4 py-2">{item.no}</td>
-                    <td className="px-4 py-2">{item.nama}</td>
-                    <td className="px-4 py-2">{item.gender}</td>
-                    <td className="px-4 py-2">{item.no_telp}</td>
-                    <td className="px-4 py-2">{item.status}</td>
-                    <td className="px-4 py-2">
-                      <Button className="px-3 py-1 bg-blue-500 ">Edit</Button>
-                      <Button className="px-3 py-1 bg-red-500 ml-2">
-                        Delete
-                      </Button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            <DataTable columns={columns} data={data} />
           </div>
         </div>
       </section>
