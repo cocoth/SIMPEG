@@ -1,7 +1,15 @@
+"use client"; // Client Componnet
+
 import { useState } from "react";
+import { Button } from "@/components/ui/button";
 import Data from "./data";
 
 export default function Home() {
+  const [data, setData] = useState<Data[] | null>(null);
+
+  const handleAddButton = () => {
+    setData(Data);
+  };
   return (
     <main>
       <section className="px-2 py-3 bg-[#f8f9fe]">
@@ -13,11 +21,11 @@ export default function Home() {
                   List Pegawai
                 </h3>
               </div>
-              <div className="bg-blue-700 px-3 py-1 rounded-sm">
-                <h1 className=" text-md font-ubuntu font-semibold text-white tracking-wide cursor-pointer">
-                  Buat Data
-                </h1>
-              </div>
+              <Button
+                className="bg-blue-700 px-3 py-1 text-md font-ubuntu font-semibold text-white tracking-wide cursor-pointer rounded-sm"
+                onClick={handleAddButton}>
+                Add
+              </Button>
             </div>
             <div className="px-3 py-1">
               <label htmlFor="search" className="font-poppins text-light">
@@ -38,7 +46,7 @@ export default function Home() {
             <table className="table-fixed w-full text-left">
               <thead className="bg-white">
                 <tr>
-                  <th className="px-4 py-2">NIP</th>
+                  <th className="px-4 py-2 w-32">No</th>
                   <th className="px-4 py-2">Nama</th>
                   <th className="px-4 py-2">Gender</th>
                   <th className="px-4 py-2">No.Telp</th>
@@ -55,12 +63,10 @@ export default function Home() {
                     <td className="px-4 py-2">{item.telephone}</td>
                     <td className="px-4 py-2">{item.status}</td>
                     <td className="px-4 py-2">
-                      <button className="px-3 py-1 bg-blue-500 text-white rounded">
-                        Edit
-                      </button>
-                      <button className="px-3 py-1 bg-red-500 text-white rounded ml-2">
-                        Hapus
-                      </button>
+                      <Button className="px-3 py-1 bg-blue-500 ">Edit</Button>
+                      <Button className="px-3 py-1 bg-red-500 ml-2">
+                        Delete
+                      </Button>
                     </td>
                   </tr>
                 ))}
