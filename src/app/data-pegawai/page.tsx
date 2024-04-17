@@ -1,12 +1,9 @@
-"use client"; // Client Componnet
-
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { data } from "./data";
 
 // Data Table
-import { Payment, columns } from "./columns";
-import { DataTable } from "./data-table";
+import { columns } from "@/components/tables/Columns";
+import { DataTable } from "@/components/tables/DataTable";
 
 export default function Home() {
   return (
