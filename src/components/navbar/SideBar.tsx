@@ -82,7 +82,7 @@ const SideBar = () => {
                         <Link
                             key={i}
                             href={item.link}
-                            className={`rounded-xl py-1 px-2 hover:bg-gray-200 hover:text-preset border ${path === item.link
+                            className={`rounded-xl py-1 px-2 hover:bg-gray-100 hover:text-preset border ${path === item.link
                                 ? "bg-white text-preset "
                                 : "text-white"
                                 }`}
