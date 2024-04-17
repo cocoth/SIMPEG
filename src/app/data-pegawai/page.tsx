@@ -5,8 +5,6 @@ import { Button } from "@/components/ui/button";
 import Data from "./data";
 
 export default function Home() {
-  const [data, setData] = useState<Data[] | null>(null);
-
   const handleAddButton = () => {
     setData(Data);
   };
