@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Data from "./data";
+import { data } from "./data";
 
 export default function Home() {
   return (
@@ -38,7 +38,7 @@ export default function Home() {
             <table className="table-fixed w-full text-left">
               <thead className="bg-white">
                 <tr>
-                  <th className="px-4 py-2">NIP</th>
+                  <th className="px-4 py-2">No</th>
                   <th className="px-4 py-2">Nama</th>
                   <th className="px-4 py-2">Gender</th>
                   <th className="px-4 py-2">No.Telp</th>
@@ -47,12 +47,12 @@ export default function Home() {
                 </tr>
               </thead>
               <tbody>
-                {Data.map((item, index) => (
+                {data.map((item, index) => (
                   <tr key={index} className="bg-gray-100">
-                    <td className="px-4 py-2">{item.nip}</td>
+                    <td className="px-4 py-2">{item.no}</td>
                     <td className="px-4 py-2">{item.nama}</td>
                     <td className="px-4 py-2">{item.gender}</td>
-                    <td className="px-4 py-2">{item.telephone}</td>
+                    <td className="px-4 py-2">{item.no_telp}</td>
                     <td className="px-4 py-2">{item.status}</td>
                     <td className="px-4 py-2">
                       <button className="px-3 py-1 bg-blue-500 text-white rounded">
