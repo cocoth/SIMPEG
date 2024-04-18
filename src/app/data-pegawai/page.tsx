@@ -1,6 +1,6 @@
 "use client";
 import { data } from "./data";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 // Data Table
 import { columns } from "@/components/tables/Columns";
@@ -8,10 +8,11 @@ import { DataTable } from "@/components/tables/DataTable";
 
 export default function Home() {
   const router = useRouter();
-  const path = usePathname();
+  // const path = usePathname();
   const handleCellClick = (cell: any) => {
-    const id = cell.row.id;
-    router.push(`${path}/details/pegawai?=${id}`);
+    const id = cell.row.original;
+    console.log(id);
+    router.push(`/details/pegawai?id=${id}`);
   };
   return (
     <main>
