@@ -1,5 +1,5 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -34,11 +34,13 @@ import {
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  onClick?: (cell: any) => void;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  onClick,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -62,11 +64,7 @@ export function DataTable<TData, TValue>({
       rowSelection,
     },
   });
-  const router = useRouter();
-  const handleCellClick = (cell: any) => {
-    const id = cell.row.id;
-    router.push(`/data-pegawai/pegawai?=${id}`);
-  };
+
   return (
     <div>
       <section className="flex items-center py-4">
@@ -129,7 +127,7 @@ export function DataTable<TData, TValue>({
                   {row.getVisibleCells().map((cell) => (
                     <TableCell
                       key={cell.id}
-                      onClick={() => handleCellClick(cell)}>
+                      onClick={() => onClick && onClick(cell)}>
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()
