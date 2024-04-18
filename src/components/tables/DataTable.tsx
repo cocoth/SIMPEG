@@ -1,4 +1,5 @@
 "use client";
+import { useRouter } from "next/navigation";
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -61,6 +62,11 @@ export function DataTable<TData, TValue>({
       rowSelection,
     },
   });
+  const router = useRouter();
+  const handleCellClick = (cell: any) => {
+    const id = cell.row.id;
+    router.push(`/data-pegawai/pegawai?=${id}`);
+  };
   return (
     <div>
       <section className="flex items-center py-4">
@@ -121,7 +127,9 @@ export function DataTable<TData, TValue>({
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}>
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
+                    <TableCell
+                      key={cell.id}
+                      onClick={() => handleCellClick(cell)}>
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()

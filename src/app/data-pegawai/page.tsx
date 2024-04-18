@@ -1,5 +1,8 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { data } from "./data";
+import { useRouter } from "next/router";
+import { dataPegawai } from "../../../type";
 
 // Data Table
 import { columns } from "@/components/tables/Columns";

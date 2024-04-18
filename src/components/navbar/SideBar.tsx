@@ -19,8 +19,8 @@ const SideBar = () => {
       link: "/kalkulasi",
     },
     {
-      title: "Tambah Pegawai",
-      link: "/tambah-pegawai",
+      title: "Manage Pegawai",
+      link: "/manage-pegawai",
     },
   ];
 

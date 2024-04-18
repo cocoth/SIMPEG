@@ -12,8 +12,6 @@ import {
 import { Button } from "../ui/button";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { Checkbox } from "../ui/checkbox";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
 
 export const columns: ColumnDef<dataPegawai>[] = [
   {
@@ -57,9 +55,15 @@ export const columns: ColumnDef<dataPegawai>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
           Nama
           <ArrowUpDown className="ml-2 h-4 w-4" />
+          <div>dasdsa</div>
         </Button>
       );
     },
+    // cell: ({ row }) => {
+    //   const name = row.original.nama;
+    //   const handlelink = () => {};
+    //   return <div onClick={() => nama}>{name}</div>;
+    // },
   },
   {
     accessorKey: "gender",
@@ -82,35 +86,38 @@ export const columns: ColumnDef<dataPegawai>[] = [
     },
   },
   {
-    header: "Actions",
     id: "actions",
     cell: ({ row }) => {
       const data = row.original;
-      // const path = [
-      //   {
-      //     link: "/details/pegawai",
-      //   },
-      // ];
+      const copyItem = [
+        {
+          title: "Copy Name",
+          opt: data.nama,
+          link: "/detail-pegawai",
+        },
+        {
+          title: "Copy Email",
+          opt: data.email,
+        },
+        {
+          title: "Copy No.Telp",
+          opt: data.no_telp,
+        },
+      ];
       return (
         <DropdownMenu>
-          <DropdownMenuTrigger>
-            <Button variant={"ghost"} className="h-8 w-8 p-0">
-              <span className="sr-only">Open Menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
+          <DropdownMenuTrigger asChild className="cursor-pointer">
+            <MoreHorizontal className="h-4 w-4" />
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <Link href={`/detail-pegawai/`}>
-              <DropdownMenuItem>Detail</DropdownMenuItem>
-            </Link>
-            <Link href={`/edit-pegawai/`}>
-              <DropdownMenuItem>Edit</DropdownMenuItem>
-            </Link>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(data.no_telp)}>
-              Delete
-            </DropdownMenuItem>
+            {copyItem.map((item, i) => (
+              <DropdownMenuItem
+                onClick={() => navigator.clipboard.writeText(item.opt)}
+                className="">
+                {item.title}
+              </DropdownMenuItem>
+            ))}
             <DropdownMenuSeparator />
           </DropdownMenuContent>
         </DropdownMenu>
