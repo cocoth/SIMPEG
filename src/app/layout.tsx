@@ -22,15 +22,15 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} ${ubuntu.variable} ${lobster.variable} ${fajllaOne.variable}`}
       >
-        <section className="flex">
+        {/* <section className="flex ">
           <SideBar />
           <div className="flex flex-col w-full">
-            <div className="">
-              <Navbar />
+            <Navbar />
+            <section className="flex pt-16 pl-64 overflow-y-auto"> */}
               {children}
-            </div>
+            {/* </section>
           </div>
-        </section>
+        </section> */}
       </body>
     </html>
   );
