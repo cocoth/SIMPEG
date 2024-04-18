@@ -33,17 +33,25 @@ const DetailPegawai = () => {
               <CardContent>
                 <form>
                   <div className="grid w-full items-center gap-2">
-                    <div className="flex flex-col bg-[#f8f9fe] px-2 py-2 rounded-sm">
+                    <div className="flex flex-col bg-[#f8f9fe] px-2 py-1 rounded-sm">
+                      <h1 className="text-xs font-poppins">NIP</h1>
+                      <h1 className="text-md font-poppins">123456</h1>
+                    </div>
+                    <div className="flex flex-col bg-[#f8f9fe] px-2 py-1 rounded-sm">
                       <h1 className="text-xs font-poppins">Nama</h1>
                       <h1 className="text-md font-poppins">Sutejo</h1>
                     </div>
-                    <div className="flex flex-col bg-[#f8f9fe] px-2 py-2 rounded-sm">
+                    <div className="flex flex-col bg-[#f8f9fe] px-2 py-1 rounded-sm">
                       <h1 className="text-xs font-poppins">Gender</h1>
                       <h1 className="text-md font-poppins">Laki-Laki</h1>
                     </div>
-                    <div className="flex flex-col bg-[#f8f9fe] px-2 py-2 rounded-sm">
+                    <div className="flex flex-col bg-[#f8f9fe] px-2 py-1 rounded-sm">
                       <h1 className="text-xs font-poppins">Status</h1>
                       <h1 className="text-md font-poppins">Aktif</h1>
+                    </div>
+                    <div className="flex flex-col bg-[#f8f9fe] px-2 py-1 rounded-sm">
+                      <h1 className="text-xs font-poppins">Tanggal Masuk</h1>
+                      <h1 className="text-md font-poppins">Date Time</h1>
                     </div>
                   </div>
                 </form>
@@ -82,24 +90,27 @@ const DetailPegawai = () => {
                 <CardContent>
                   <form>
                     <div className="grid w-full items-center gap-2">
-                      <div className="flex flex-col bg-[#f8f9fe] px-2 py-2 rounded-sm">
-                        <h1 className="text-[8px] font-poppins">Full Name</h1>
+                      <div className="flex flex-col bg-[#f8f9fe] px-2 py-1 rounded-sm">
+                        <h1 className="text-[9px] font-poppins">Full Name</h1>
                         <h1 className="text-md font-poppins">Sutejo</h1>
                       </div>
-                      <div className="flex flex-col bg-[#f8f9fe] px-2 py-2 rounded-sm">
-                        <h1 className="text-xs font-poppins">Gender</h1>
-                        <h1 className="text-md font-poppins">Laki-Laki</h1>
+                      <div className="flex justify-between gap-4">
+                        <div className="w-1/2 flex flex-col bg-[#f8f9fe] px-2 py-1 rounded-sm">
+                          <h1 className="text-[9px] font-poppins">Gender</h1>
+                          <h1 className="text-md font-poppins">Laki-Laki</h1>
+                        </div>
+                        <div className="w-1/2 flex flex-col bg-[#f8f9fe] px-2 py-1 rounded-sm">
+                          <h1 className="text-[9px] font-poppins">Birthday</h1>
+                          <h1 className="text-md font-poppins">12/1/2023</h1>
+                        </div>
                       </div>
-                      <div className="flex flex-col bg-[#f8f9fe] px-2 py-2 rounded-sm">
-                        <h1 className="text-xs font-poppins">Status</h1>
-                        <h1 className="text-md font-poppins">Aktif</h1>
+                      <div className="flex flex-col bg-[#f8f9fe] px-2 py-1 rounded-sm">
+                        <h1 className="text-[9px] font-poppins">Alamat</h1>
+                        <h1 className="text-md font-poppins">Jl.Pedurungan</h1>
                       </div>
                     </div>
                   </form>
                 </CardContent>
-                <CardFooter className="flex justify-between">
-                  <Button>Edit Profil</Button>
-                </CardFooter>
               </Card>
             )}
             {activeLink === "Slip-Gaji" && (
@@ -114,9 +125,11 @@ const DetailPegawai = () => {
                         <h1 className="text-xs font-poppins">Nama</h1>
                         <h1 className="text-md font-poppins">Sutejo</h1>
                       </div>
-                      <div className="flex flex-col bg-[#f8f9fe] px-2 py-2 rounded-sm">
-                        <h1 className="text-xs font-poppins">Gender</h1>
-                        <h1 className="text-md font-poppins">Laki-Laki</h1>
+                      <div className="flex justify-between">
+                        <div className="w-[20px] flex flex-col bg-[#f8f9fe] px-2 py-2 rounded-sm">
+                          <h1 className="text-xs font-poppins">Gender</h1>
+                          <h1 className="text-md font-poppins">Laki-Laki</h1>
+                        </div>
                       </div>
                       <div className="flex flex-col bg-[#f8f9fe] px-2 py-2 rounded-sm">
                         <h1 className="text-xs font-poppins">Status</h1>
@@ -125,9 +138,6 @@ const DetailPegawai = () => {
                     </div>
                   </form>
                 </CardContent>
-                <CardFooter className="flex justify-between">
-                  <Button>add Profil</Button>
-                </CardFooter>
               </Card>
             )}
           </div>
