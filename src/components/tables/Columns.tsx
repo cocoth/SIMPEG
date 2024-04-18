@@ -65,7 +65,7 @@ export const columns: ColumnDef<dataPegawai>[] = [
     },
     {
         header: "Status",
-        cell: ({row})=>{
+        cell: ({ row }) => {
             const status = row.original.status
             const isActive = status === 'Aktif' ? 'text-green-500' : 'text-red-600'
             return <p className={isActive}>{status}</p>
@@ -75,38 +75,42 @@ export const columns: ColumnDef<dataPegawai>[] = [
         id: "actions",
         cell: ({ row }) => {
             const data = row.original
+            const copyItem = [
+                {
+                    title: 'Copy Name',
+                    opt: data.nama
+                },
+                {
+                    title: 'Copy Email',
+                    opt: data.email
+                },
+                {
+                    title: 'Copy No.Telp',
+                    opt: data.no_telp
+                },
+            ]
             return (
                 <DropdownMenu>
-                    <DropdownMenuTrigger>
-                        <Button
-                            variant={'ghost'}
-                            className="h-8 w-8 p-0"
-                        >
-                            <span className="sr-only">
-                                Open Menu
-                            </span>
-                            <MoreHorizontal className="h-4 w-4" />
-                        </Button>
+                    <DropdownMenuTrigger
+                        asChild
+                        className="cursor-pointer"
+                    >
+                        <MoreHorizontal className="h-4 w-4" />
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
                         <DropdownMenuLabel>
                             Actions
                         </DropdownMenuLabel>
-                        <DropdownMenuItem
-                            onClick={() => navigator.clipboard.writeText(data.email)}
-                        >
-                            Copy email
-                        </DropdownMenuItem>
-                        <DropdownMenuItem
-                            onClick={() => navigator.clipboard.writeText(data.nama)}
-                        >
-                            Copy name
-                        </DropdownMenuItem>
-                        <DropdownMenuItem
-                            onClick={() => navigator.clipboard.writeText(data.no_telp)}
-                        >
-                            Copy No.Telp
-                        </DropdownMenuItem>
+                        {copyItem.map((item, i) => (
+                            <DropdownMenuItem
+                                onClick={() => navigator.clipboard.writeText(item.opt)}
+                                className="cursor-copy"
+
+                            >
+                                {item.title}
+                            </DropdownMenuItem>
+
+                        ))}
                         <DropdownMenuSeparator />
                     </DropdownMenuContent>
                 </DropdownMenu>

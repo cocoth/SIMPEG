@@ -66,13 +66,10 @@ export function DataTable<TData, TValue>({
                     className="max-w-sm"
                 />
                 <DropdownMenu>
-                    <DropdownMenuTrigger>
-                        <Button
-                            variant={'outline'}
-                            className="ml-auto"
-                        >
+                    <DropdownMenuTrigger 
+                    className="ml-4 border rounded-md py-1 px-4"
+                    >
                             Columns
-                        </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
                         {table.getAllColumns().filter(
