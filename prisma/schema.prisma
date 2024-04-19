@@ -10,12 +10,15 @@ datasource db {
 model Pegawai {
   id            Int         @id @default(autoincrement())
   nama          String
+  gender        String
   alamat        String
   email         String      @unique
   no_telp       String
   jabatan       String?
   tanggal_lahir DateTime?   @default(now()) @db.Date
   foto_profile  Bytes?
+  status        String
+  tanggal_masuk DateTime    @default(now()) @db.Date
   gaji_pokok    Float
   tunjangan     Float
   potongan_gaji Float
@@ -25,14 +28,14 @@ model Pegawai {
 }
 
 model Fasilitas {
-  id             Int     @id @default(autoincrement())
+  id             Int       @id @default(autoincrement())
   nama           String
   potongan_biaya Float
   pegawai        Pegawai[]
 }
 
 model Admin {
-  id        Int         @id @default(autoincrement())
-  username  String      @unique
-  password  String
+  id       Int    @id @default(autoincrement())
+  username String @unique
+  password String
 }
