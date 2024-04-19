@@ -10,7 +10,7 @@ datasource db {
 model Pegawai {
   id            Int         @id @default(autoincrement())
   nama          String
-  gender        String
+  gender        String?
   alamat        String
   email         String      @unique
   no_telp       String
