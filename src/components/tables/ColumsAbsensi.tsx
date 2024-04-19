@@ -71,8 +71,8 @@ export const columnsAbsensi: ColumnDef<Pegawai>[] = [
     },
     {
         id: "kehadiran",
-        header: () => <div className="text-center">Kehadiran</div>,
-        cell: ({ row }) => {
+        header: ()=> <div className="text-center">Kehadiran</div>,
+        cell: ({row})=>{
             return (
                 <div className="flex justify-center space-x-3">
                     <Button variant={'default'}>
