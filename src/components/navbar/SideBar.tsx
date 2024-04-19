@@ -44,7 +44,7 @@ const SideBar = () => {
           <Link href={`/`}>SIMPEG</Link>
         </div>
         <div className="h-[1px] w-full bg-white" />
-        <div className="grid grid-flow-row w-full my-2 capitalize text-white ">
+        <div className="grid grid-flow-row w-full  capitalize text-white ">
           {items.map((item, i) => (
             <Link
               key={i}
