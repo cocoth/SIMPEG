@@ -5,8 +5,9 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel,
 import { Button } from "../ui/button"
 import { ArrowUpDown, MoreHorizontal } from "lucide-react"
 import { Checkbox } from "../ui/checkbox"
+import { Pegawai } from "@prisma/client"
 
-export const columns: ColumnDef<dataPegawai>[] = [
+export const columns: ColumnDef<Pegawai>[] = [
     {
         id: "select",
         header: ({ table }) => (
@@ -30,10 +31,10 @@ export const columns: ColumnDef<dataPegawai>[] = [
         enableHiding: false,
     },
     {
-        accessorKey: "no",
+        accessorKey: "id",
         header: () => <div className="text-center"> No </div>,
         cell: ({ row }) => {
-            const nomer = parseFloat(row.getValue("no"))
+            const nomer = parseFloat(row.getValue("id"))
             return <div className="text-center font-medium">{nomer}</div>
         }
     },
@@ -56,18 +57,16 @@ export const columns: ColumnDef<dataPegawai>[] = [
         header: "Gender"
     },
     {
-        accessorKey: "no_telp",
-        header: "No.Telp"
-    },
-    {
-        accessorKey: "email",
-        header: "Email"
+        accessorKey: "jabatan",
+        header: "Jabatan"
     },
     {
         header: "Status",
         cell: ({ row }) => {
-            const status = row.original.status
-            const isActive = status === 'Aktif' ? 'text-green-500' : 'text-red-600'
+            const status = row.original.status.toLowerCase()
+
+            const isActive = status === 'aktif' ? 'text-green-500' :
+                status === 'cuti' ? 'text-blue-500' : 'text-red-600'
             return <p className={isActive}>{status}</p>
         }
     },
