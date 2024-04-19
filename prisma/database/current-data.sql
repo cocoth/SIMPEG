@@ -113,17 +113,20 @@ ALTER SEQUENCE public."Fasilitas_id_seq" OWNED BY public."Fasilitas".id;
 CREATE TABLE public."Pegawai" (
     id integer NOT NULL,
     nama text NOT NULL,
+    gender text,
     alamat text NOT NULL,
     email text NOT NULL,
     no_telp text NOT NULL,
+    jabatan text,
     tanggal_lahir date DEFAULT CURRENT_TIMESTAMP,
     foto_profile bytea,
+    status text NOT NULL,
+    tanggal_masuk date DEFAULT CURRENT_TIMESTAMP NOT NULL,
     gaji_pokok double precision NOT NULL,
     tunjangan double precision NOT NULL,
     potongan_gaji double precision NOT NULL,
     kehadiran integer NOT NULL,
-    cuti integer NOT NULL,
-    jabatan text
+    cuti integer NOT NULL
 );
 
 
@@ -207,7 +210,7 @@ ALTER TABLE ONLY public."Pegawai" ALTER COLUMN id SET DEFAULT nextval('public."P
 --
 
 COPY public."Admin" (id, username, password) FROM stdin;
-1	admin	admin
+1	admin	
 \.
 
 
@@ -216,8 +219,7 @@ COPY public."Admin" (id, username, password) FROM stdin;
 --
 
 COPY public."Fasilitas" (id, nama, potongan_biaya) FROM stdin;
-2	kendaraan	100000
-3	bpjs	200000
+1	BPJS	200000
 \.
 
 
@@ -225,10 +227,11 @@ COPY public."Fasilitas" (id, nama, potongan_biaya) FROM stdin;
 -- Data for Name: Pegawai; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public."Pegawai" (id, nama, alamat, email, no_telp, tanggal_lahir, foto_profile, gaji_pokok, tunjangan, potongan_gaji, kehadiran, cuti, jabatan) FROM stdin;
-1	suparman	semarang	suparman@test.com	0823845738293	2000-03-01	\N	4000000	2000000	200000	20	0	junior
-3	anggi	tasik	anggi@test.com	08423793413	2002-03-05	\N	1000000	0	0	18	2	magang
-2	suprianto	ungaran	suprianto@test.com	08574357283942	1999-04-23	\N	5000000	2500000	200000	20	0	manager
+COPY public."Pegawai" (id, nama, gender, alamat, email, no_telp, jabatan, tanggal_lahir, foto_profile, status, tanggal_masuk, gaji_pokok, tunjangan, potongan_gaji, kehadiran, cuti) FROM stdin;
+1	suparman	laki-laki	semarang	suparman@test.com	084375842349	manager	\N	\N	aktif	2023-01-01	5000000	2500000	200000	20	0
+2	anggi	laki-laki	ungaran	anggi@test.com	085429575843	junior	2024-04-19	\N	cuti	2024-04-19	3000000	1000000	200000	19	1
+3	risa	perempuan	bekasi	risa@test.com	089576432389	senior	2024-04-19	\N	tidak aktif	2024-04-19	4000000	3000000	300000	20	0
+4	deni	laki-laki	jakarta barant	deni@test.com	098521343213	magang	2024-04-19	\N	aktif	2024-04-19	1000000	50000	0	20	0
 \.
 
 
@@ -237,7 +240,9 @@ COPY public."Pegawai" (id, nama, alamat, email, no_telp, tanggal_lahir, foto_pro
 --
 
 COPY public."_FasilitasToPegawai" ("A", "B") FROM stdin;
-2	1
+1	1
+1	2
+1	3
 \.
 
 
@@ -246,10 +251,7 @@ COPY public."_FasilitasToPegawai" ("A", "B") FROM stdin;
 --
 
 COPY public._prisma_migrations (id, checksum, finished_at, migration_name, logs, rolled_back_at, started_at, applied_steps_count) FROM stdin;
-e7505e15-f2a3-4f01-b745-10c6f5b0ef8f	0c39e339e44e8fac8f14e60fbecf5a4d85c6a0b89fa62aaa1d2b40c54a8aa73e	2024-04-18 21:03:49.079133+07	20240418140348_dev	\N	\N	2024-04-18 21:03:49.000336+07	1
-06e1e88b-a273-4d69-9a12-4ed8daa36aa2	d78f2a1c6f28982ba55dd220765680f2ce3b6405eb3049a22d1cce09da4d734e	2024-04-18 21:23:45.987892+07	20240418142345_init	\N	\N	2024-04-18 21:23:45.962186+07	1
-5fb724ea-fb45-4a4f-8e90-3ef14a02a40e	3b9647874d19e63780a04d01f3f32dd3525a31f87eae953c2a247d57826adcea	2024-04-18 23:50:59.628861+07	20240418165059_dev	\N	\N	2024-04-18 23:50:59.306553+07	1
-508f9c6b-dbac-434e-b608-aebdb0902cdb	7f58e6c57a48fba0c5ce2c09a7626cb651444e1274c8e51d00c32f80b9bb672e	2024-04-18 23:58:06.541612+07	20240418165806_dev	\N	\N	2024-04-18 23:58:06.52431+07	1
+6bc6e17e-edbb-425b-b86f-49dda80b4053	9fcd18d99bb387dc642658f4b9142d30c6c20121e7e0f4aaf889f50da5a19f06	2024-04-19 15:19:49.638773+07	20240419081949_dev	\N	\N	2024-04-19 15:19:49.541255+07	1
 \.
 
 
@@ -264,14 +266,14 @@ SELECT pg_catalog.setval('public."Admin_id_seq"', 1, true);
 -- Name: Fasilitas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Fasilitas_id_seq"', 3, true);
+SELECT pg_catalog.setval('public."Fasilitas_id_seq"', 1, true);
 
 
 --
 -- Name: Pegawai_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public."Pegawai_id_seq"', 3, true);
+SELECT pg_catalog.setval('public."Pegawai_id_seq"', 4, true);
 
 
 --
