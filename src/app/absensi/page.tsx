@@ -4,7 +4,7 @@ import { columnsAbsensi } from "@/components/tables/ColumsAbsensi"
 
 const AbsensiPage = async () => {
     const url = process.env.BASE_URL
-    const res = await fetch(`${url}/api`)
+    const res = await fetch(`${url}/api/v1/pegawai`)
     const resJson = await res.json()
 
     return (
