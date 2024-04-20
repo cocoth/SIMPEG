@@ -1,46 +1,43 @@
-import { Input } from '@/components/ui/input'
-import React from 'react'
+import { useCalculateSalary } from '@/utils/calulate'
+import { rupiah } from '@/utils/rupiah'
 
-const dataInput = [
-    'nama',
-    'gender',
-    'alamat',
-    'email',
-    'no.telp',
-    'jabatan',
-    'status',
-    'gaji pokok',
-    'tunjangan',
-    'potongan gaji',
-    'kehadiran',
-    'cuti',
+type data = {
+    gaji_pokok: number,
+    potongan_gaji: number,
+    fasilitas: {
+        nama: string,
+        potongan_biaya: number,
+    }[]
+} | null
 
-]
-
-
-const PageV1 = () => {
+const Pagev1 = async () => {
+    const pegawai = await useCalculateSalary(1)
+    if (!pegawai) return null
+    const { gaji_pokok, potongan_gaji, fasilitas } = pegawai
+    console.log({ gaji_pokok, potongan_gaji, fasilitas })
+    console.log(rupiah(gaji_pokok))
     return (
         <div>
-            <section>
-                <h1>
-                    Tambah data
-                </h1>
-            </section>
-            <section>
-                <form method="post">
-                    {dataInput.map((item, i) => (
-                        <React.Fragment key={i}>    
-                            <label htmlFor={`input-${item}`}>{item}</label>
-                            <Input id={`input-${item}`} placeholder={item} name={item} />
-                        </React.Fragment>
-                        
-                    ))}
+            iki contoh potongan gaji
+            <p>
+                gaji pokok: {rupiah(gaji_pokok)}
+            </p>
+            <p>
+                potongan gaji: {rupiah(potongan_gaji)}
+            </p>
+            <div>
+                fasilitas: {fasilitas.map((item, i) => (
+                    <div key={i}>
+                        nama: {item.nama}
+                        <p>
+                            potongan: {item.potongan_biaya}
+                        </p>
+                    </div>
+                ))}
+            </div>
 
-
-                </form>
-            </section>
         </div>
     )
 }
 
-export default PageV1
+export default Pagev1
