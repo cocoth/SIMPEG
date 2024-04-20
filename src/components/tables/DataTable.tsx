@@ -24,6 +24,7 @@ import { Button } from "../ui/button"
 import { useState } from "react"
 import { Input } from "../ui/input"
 import { DropdownMenu, DropdownMenuCheckboxItem, DropdownMenuContent, DropdownMenuTrigger } from "../ui/dropdown-menu"
+import { IoFilterSharp } from "react-icons/io5"
 
 interface DataTableProps<TData, TValue> {
     columns: ColumnDef<TData, TValue>[]
@@ -67,9 +68,10 @@ export function DataTable<TData, TValue>({
                 />
                 <DropdownMenu>
                     <DropdownMenuTrigger 
-                    className="ml-4 border rounded-md py-1 px-4"
+                    className="flex gap-2 items-center ml-4 border rounded-md py-1 px-4"
                     >
-                            Columns
+                            Filter 
+                            <IoFilterSharp />
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
                         {table.getAllColumns().filter(
