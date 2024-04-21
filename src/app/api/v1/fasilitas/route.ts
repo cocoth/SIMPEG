@@ -28,6 +28,23 @@ export const POST = async (req: NextRequest) => {
   }
 };
 
+export const PATCH = async(req: NextRequest)=>{
+  try {
+    const body: Fasilitas = await req.json()
+    const { id } = body
+    const pegawai = await prisma.pegawai.update({
+      where: {id},
+      data:{
+        ...body
+      }
+    })
+    return NextResponse.json(pegawai, {status: 200})
+  } catch (error) {
+    return NextResponse.json('PATCH data error!', {status: 404})
+    
+  }
+}
+
 export const DELETE = async (req: NextRequest) => {
   try {
     const body: Fasilitas = await req.json();
