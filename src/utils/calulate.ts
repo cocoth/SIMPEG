@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-type fasilitasProps = {
+type calculateSalaryProps = {
   gaji_pokok: number;
   potongan_gaji: number;
   fasilitas: {
@@ -10,8 +10,16 @@ type fasilitasProps = {
     potongan_biaya: number;
   }[];
 };
+type calculateTunjanganProps = {
+  gaji_pokok: number;
+  fasilitas: {
+    potongan_biaya: number;
+  };
+};
 
-export const useCalculateSalary = async (id: number): Promise<fasilitasProps | null>=> {
+export const useCalculateSalary = async (
+  id: number
+): Promise<calculateSalaryProps | null> => {
   const pegawai = await prisma.pegawai.findUnique({
     where: {
       id,
@@ -35,4 +43,15 @@ export const useCalculateSalary = async (id: number): Promise<fasilitasProps | n
     fasilitas,
   };
 };
-
+export const useCalculateTunjangan = async (
+  id: number,
+  presentage: number
+): Promise<number | null> => {
+  const pegawai = await prisma.pegawai.findUnique({
+    where: { id },
+    select: { gaji_pokok: true },
+  });
+  if (!pegawai) return null;
+  const tunjangan = pegawai.gaji_pokok * (presentage / 100);
+  return tunjangan;
+};
