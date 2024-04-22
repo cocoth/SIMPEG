@@ -1,7 +1,6 @@
 import type { Config } from "tailwindcss";
-const withMT = require("@material-tailwind/react/utils/withMT");
 
-const config = withMT({
+const config = {
   darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
@@ -25,13 +24,19 @@ const config = withMT({
         ubuntu: ["var(--font-ubuntu)"],
         lobster: ["var(--font-lobster)"],
       },
+      fontSize: {
+        xb: "14px",
+      },
       colors: {
         preset: {
           DEFAULT: "#7AA2E3",
           primary: "#6AD4DD",
           secondary: "#97E7E1",
           bright: "#F8F6E3",
-          primaryBg: "0000FF",
+          primaryBg: "#0000FF",
+          main: "#222831",
+          mainVisbilty: "#31363F",
+          otherSide: "#f8f9fe",
         },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -89,6 +94,6 @@ const config = withMT({
     },
   },
   plugins: [require("tailwindcss-animate")],
-}) satisfies Config;
+} satisfies Config;
 
 export default config;

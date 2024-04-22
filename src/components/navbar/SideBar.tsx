@@ -54,29 +54,7 @@ const SideBar = () => {
           <Icons name="Logo" className="text-3xl mr-2" />
           <Link href={`/`}>SIMPEG</Link>
         </div>
-        <div className="h-[1px] w-full bg-white " />
-        <div className="flex py-3 px-2">
-          <div className="border-1 rounded-full w-16 h-16">
-            <img
-              src="/next.svg"
-              className="border rounded-full w-full h-full "
-              alt="_none"
-            />
-          </div>
-          <div className="flex flex-col justify-center ml-4 font-poppins text-white">
-            <h1 className="leading-4">Admin</h1>
-            <div className="flex justify-center items-center">
-              <i
-                className={`bg-${
-                  isOnline ? "green-500" : "red-500"
-                } w-2 h-2 rounded-full`}
-              />
-              <h2 className="ml-1 text-xs">
-                {isOnline ? "Online" : "Offline"}
-              </h2>
-            </div>
-          </div>
-        </div>
+        <div className="h-[0.5px] w-full bg-white shadow-md mb-2" />
         {items.length ? (
           <nav className="grid grid-flow-row gap-1 w-full capitalize">
             {items.map((item, index) =>

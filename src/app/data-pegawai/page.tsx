@@ -1,11 +1,10 @@
 "use client";
-import { data } from "./data";
 import { useRouter } from "next/navigation";
 
 // Data Table
 import { columns } from "@/components/tables/Columns";
 import { DataTable } from "@/components/tables/DataTable";
-
+import { data } from "./data";
 export default function Home() {
   const router = useRouter();
   // const path = usePathname();
@@ -14,6 +13,12 @@ export default function Home() {
     console.log(id);
     router.push(`/details/pegawai?id=${id}`);
   };
+
+  // const fetchData = async () => {
+  //   const res = await fetch("https://pf189nf4-3000.asse.devtunnels.ms/api");
+  //   return res.json();
+  // };
+  // const datas = fetchData();
   return (
     <main>
       <section className="px-2 py-3 bg-[#f8f9fe]">
