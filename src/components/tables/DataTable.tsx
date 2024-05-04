@@ -66,38 +66,41 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      <section className="flex items-center py-4">
-        <Input
-          placeholder="Search by name..."
-          value={(table.getColumn("nama")?.getFilterValue() as string) ?? ""}
-          onChange={(e) =>
-            table.getColumn("nama")?.setFilterValue(e.target.value)
-          }
-          className="max-w-sm ml-1"
-        />
-        <DropdownMenu>
-          <DropdownMenuTrigger>
-            <Button variant={"outline"} className="ml-3">
-              Columns
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            {table
-              .getAllColumns()
-              .filter((column) => column.getCanHide())
-              .map((column) => (
-                <DropdownMenuCheckboxItem
-                  key={column.id}
-                  className="capitalize"
-                  checked={column.getIsVisible()}
-                  onCheckedChange={(value: any) =>
-                    column.toggleVisibility(!!value)
-                  }>
-                  {column.id}
-                </DropdownMenuCheckboxItem>
-              ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
+      <section className="flex items-center py-4 justify-between">
+        <div className="flex w-full">
+          <Input
+            placeholder="Search by name..."
+            value={(table.getColumn("nama")?.getFilterValue() as string) ?? ""}
+            onChange={(e) =>
+              table.getColumn("nama")?.setFilterValue(e.target.value)
+            }
+            className="max-w-sm ml-1"
+          />
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <Button variant={"outline"} className="ml-3">
+                Columns
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              {table
+                .getAllColumns()
+                .filter((column) => column.getCanHide())
+                .map((column) => (
+                  <DropdownMenuCheckboxItem
+                    key={column.id}
+                    className="capitalize"
+                    checked={column.getIsVisible()}
+                    onCheckedChange={(value: any) =>
+                      column.toggleVisibility(!!value)
+                    }>
+                    {column.id}
+                  </DropdownMenuCheckboxItem>
+                ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+        <Button>Add</Button>
       </section>
       <section className="rounded-xl border">
         <Table>

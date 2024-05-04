@@ -21,7 +21,7 @@ model Pegawai {
   tanggal_masuk DateTime    @default(now()) @db.Date
   gaji_pokok    Float
   tunjangan     Float
-  potongan_gaji Float
+  potongan_gaji Float 
   kehadiran     Int
   cuti          Int
   fasilitas     Fasilitas[]

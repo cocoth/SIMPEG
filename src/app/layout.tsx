@@ -21,11 +21,11 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${poppins.variable} ${ubuntu.variable} ${lobster.variable} ${fajllaOne.variable}`}>
-        <section className="flex ">
+        <section className="flex h-screen ">
           <SideBar />
-          <div className="flex flex-col w-full">
+          <div className="flex flex-col w-full h-screen ">
             <Navbar />
-            {children}
+            <div className="overflow-y-scroll">{children}</div>
           </div>
         </section>
       </body>

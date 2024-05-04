@@ -21,8 +21,8 @@ export default function Home() {
   // const datas = fetchData();
   return (
     <main>
-      <section className="px-2 py-3 bg-[#f8f9fe]">
-        <div className="bg-white my-4 flex flex-col shadow-md border-2 border-blue-500 rounded-lg">
+      <section className="bg-[#f8f9fe]">
+        <div className="flex flex-col my-4 bg-white border-blue-500 rounded-lg shadow-md border-2">
           <div className="overflow-x-auto mx-3 my-3">
             <DataTable
               columns={columns}
