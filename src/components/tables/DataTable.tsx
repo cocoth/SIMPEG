@@ -66,40 +66,42 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      <section className="flex items-center py-4">
-        <Input
-          placeholder="Search by name..."
-          value={(table.getColumn("nama")?.getFilterValue() as string) ?? ""}
-          onChange={(e) =>
-            table.getColumn("nama")?.setFilterValue(e.target.value)
-          }
-          className="max-w-sm ml-1"
-        />
-        <DropdownMenu>
-          <DropdownMenuTrigger>
-            <Button variant={"outline"} className="ml-3">
-              Columns
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            {table
-              .getAllColumns()
-              .filter((column) => column.getCanHide())
-              .map((column) => (
-                <DropdownMenuCheckboxItem
-                  key={column.id}
-                  className="capitalize"
-                  checked={column.getIsVisible()}
-                  onCheckedChange={(value: any) =>
-                    column.toggleVisibility(!!value)
-                  }>
-                  {column.id}
-                </DropdownMenuCheckboxItem>
-              ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
+      <section className="flex items-center py-4 justify-between">
+        <div className="flex w-full">
+          <Input
+            placeholder="Search by name..."
+            value={(table.getColumn("nama")?.getFilterValue() as string) ?? ""}
+            onChange={(e) =>
+              table.getColumn("nama")?.setFilterValue(e.target.value)
+            }
+            className="max-w-sm ml-1"
+          />
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <Button variant={"outline"} className="ml-3">
+                Columns
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              {table
+                .getAllColumns()
+                .filter((column) => column.getCanHide())
+                .map((column) => (
+                  <DropdownMenuCheckboxItem
+                    key={column.id}
+                    className="capitalize"
+                    checked={column.getIsVisible()}
+                    onCheckedChange={(value: any) =>
+                      column.toggleVisibility(!!value)
+                    }>
+                    {column.id}
+                  </DropdownMenuCheckboxItem>
+                ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
       </section>
-      <section className="rounded-xl border">
+      <section className="rounded border">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -146,16 +148,16 @@ export function DataTable<TData, TValue>({
             )}
           </TableBody>
         </Table>
-        <div className="flex items-center justify-end space-x-2 py">
+        <div className="flex items-center justify-end py-2 px-2 space-x-2">
           <Button
-            variant={"outline"}
+            variant={"default"}
             size={"sm"}
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}>
             Previous
           </Button>
           <Button
-            variant={"outline"}
+            variant={"default"}
             size={"sm"}
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}>

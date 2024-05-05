@@ -65,6 +65,10 @@ export const columns: ColumnDef<dataPegawai>[] = [
     // },
   },
   {
+    accessorKey: "jabatan",
+    header: "Jabatan",
+  },
+  {
     accessorKey: "gender",
     header: "Gender",
   },
@@ -77,12 +81,10 @@ export const columns: ColumnDef<dataPegawai>[] = [
     header: "Email",
   },
   {
-    header: "Status",
-    cell: ({ row }) => {
-      const status = row.original.status;
-      const isActive = status === "Aktif" ? "text-green-500" : "text-red-600";
-      return <p className={isActive}>{status}</p>;
-    },
+    accessorKey: "status",
+    cell:({row}) => {
+      
+    } 
   },
   {
     id: "actions",
