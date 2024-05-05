@@ -5,6 +5,11 @@
 /.pnp
 .pnp.js
 .yarn/install-state.gz
+pnpm-local.yaml
+package-lock.json
+pnpm-lock.yaml
+
+
 
 # testing
 /coverage
@@ -27,6 +32,7 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env
 
 # vercel
 .vercel
