@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const TambahPegawaiPage = () => {
-  return (
-    <div>TambahPegawaiPage</div>
-  )
-}
+  return <div>TambahPegawaiPage</div>;
+};
 
-export default TambahPegawaiPage
+export default TambahPegawaiPage;
