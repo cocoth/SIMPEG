@@ -15,8 +15,9 @@ import { Pegawai } from "@prisma/client";
 import { useState } from "react";
 import AddPegawai from "../absen/AddAbsen";
 import EditPegawai from "../absen/EditPegawai";
+import { dataPegawai } from "../../../type";
 
-export const columnsAbsensi: ColumnDef<Pegawai>[] = [
+export const columnsAbsensi: ColumnDef<dataPegawai>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -67,16 +68,18 @@ export const columnsAbsensi: ColumnDef<Pegawai>[] = [
     header: "Jabatan",
   },
   {
-    header: "Status",
+    header: "Kehadiran",
     cell: ({ row }) => {
-      const status = row.original.status.toLowerCase();
+      const kehadiran = row.original.kehadiran;
       const isActive =
-        status === "aktif"
+        kehadiran === "hadir"
           ? "text-green-500"
-          : status === "cuti"
+          : kehadiran === "terlambat"
           ? "text-blue-500"
-          : "text-red-600";
-      return <p className={isActive}>{status}</p>;
+          : kehadiran === "izin"
+          ? "text-white"
+          : "text-red-500";
+      return <p className={isActive}>{kehadiran}</p>;
     },
   },
 
@@ -95,20 +98,28 @@ export const columnsAbsensi: ColumnDef<Pegawai>[] = [
 
       const handleActionClick = (action: string) => {
         if (action === "Add") {
-          setModalContent(<AddPegawai />); // Render your add form component in the modal
+          setModalContent(<AddPegawai />);
         } else if (action === "Edit") {
-          setModalContent(<EditPegawai />); // Render your edit form component in the modal
+          setModalContent(<EditPegawai />);
         }
-        setIsModalOpen(true); // Open the modal
+        setIsModalOpen(true);
       };
 
       const copyItem = [
         {
-          title: "Add",
+          title: "Hadir",
           opt: data.nama,
         },
         {
-          title: "Edit",
+          title: "Terlambat",
+          opt: data.email,
+        },
+        {
+          title: "Izin",
+          opt: data.email,
+        },
+        {
+          title: "Cuti",
           opt: data.email,
         },
       ];
@@ -119,11 +130,11 @@ export const columnsAbsensi: ColumnDef<Pegawai>[] = [
               <MoreHorizontal className="h-4 w-4" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuLabel>Actions</DropdownMenuLabel>
+              <DropdownMenuLabel>Kehadiran</DropdownMenuLabel>
               {copyItem.map((item, i) => (
                 <DropdownMenuItem
                   onClick={() => handleActionClick(item.title)}
-                  className="cursor-copy">
+                  className="cursor-pointer">
                   {item.title}
                 </DropdownMenuItem>
               ))}

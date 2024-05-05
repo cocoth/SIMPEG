@@ -5,10 +5,12 @@ import CardDataGaji from "@/components/card/CardDataGaji";
 
 const TambahPegawaiPage = () => {
   return (
-    <main className="">
-      <section className="container rounded-xl">
-        <h1 className="font-bold font-ubuntu text-xl">Management Pegawai</h1>
-        <div className="space-y-8">
+    <main className="bg-[#f8f9fe] relative">
+      <section className="container mx-auto py-4">
+        <h1 className="font-bold mb-4 font-ubuntu text-xl">
+          Management Pegawai
+        </h1>
+        <div className="flex flex-col gap-y-4">
           <CardDataPegawai />
           <CardDataGaji />
         </div>

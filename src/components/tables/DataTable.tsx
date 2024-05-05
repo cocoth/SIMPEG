@@ -100,9 +100,8 @@ export function DataTable<TData, TValue>({
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
-        <Button>Add</Button>
       </section>
-      <section className="rounded-xl border">
+      <section className="rounded border">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -149,16 +148,16 @@ export function DataTable<TData, TValue>({
             )}
           </TableBody>
         </Table>
-        <div className="flex items-center justify-end space-x-2 py">
+        <div className="flex items-center justify-end py-2 px-2 space-x-2">
           <Button
-            variant={"outline"}
+            variant={"default"}
             size={"sm"}
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}>
             Previous
           </Button>
           <Button
-            variant={"outline"}
+            variant={"default"}
             size={"sm"}
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}>

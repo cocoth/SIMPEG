@@ -1,7 +1,3 @@
-"use client";
-import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
-import { useRouter } from "next/navigation";
 import { FaPen } from "react-icons/fa";
 import { Button } from "@/components/ui/button";
 import { AlertDialogDemo } from "@/components/alert/Alert";
@@ -13,23 +9,9 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { TabsProfil } from "@/components/tabs/TabsProfil";
 
 const DetailPegawai = () => {
-  const [activeLink, setActiveLink] = useState("Personal-Data");
-  const [isEditLink, setIsEditLink] = useState(false);
-  // const id = useParams();
-  const router = useRouter();
-  // const searchParams = useSearchParams();
-
-  // const id = searchParams.get("id");
-  // console.log(id);
-
-  const handleEdit = () => {
-    AlertDialogDemo();
-    console.log("Hai");
-    // setIsEditLink(true);
-    // router.push("/edit-pegawai/");
-  };
   return (
     <main>
       <section className="px-4 py-4 bg-[#f8f9fe]">
@@ -41,10 +23,7 @@ const DetailPegawai = () => {
             <Card className="w-[350px]">
               <CardHeader>
                 <div className="relative flex flex-end bg-black">
-                  <FaPen
-                    className="text-gray-700 absolute right-0 cursor-pointer"
-                    onClick={handleEdit}
-                  />
+                  <FaPen className="text-gray-700 absolute right-0 cursor-pointer" />
                 </div>
                 <div className="flex relative justify-center mb-2">
                   <img
@@ -61,7 +40,6 @@ const DetailPegawai = () => {
               <CardContent>
                 <form className="grid grid-cols-1 gap-2">
                   {[
-                    { label: "NIP", value: "123456" },
                     { label: "Nama", value: "Sutejo" },
                     { label: "Gender", value: "Laki-Laki" },
                     { label: "Status", value: "Aktif" },
@@ -78,7 +56,8 @@ const DetailPegawai = () => {
               </CardContent>
             </Card>
           </div>
-          <div className="w-4/6 bg-[#f8f9fe] ml-4 py-6">
+          <TabsProfil></TabsProfil>
+          {/* <div className="w-4/6 bg-[#f8f9fe] ml-4 py-6">
             <div className="flex justify-evenly py-2">
               <div
                 onClick={() => setActiveLink("Personal-Data")}
@@ -170,7 +149,7 @@ const DetailPegawai = () => {
                 </CardContent>
               </Card>
             )}
-          </div>
+          </div> */}
         </div>
       </section>
     </main>
