@@ -4,8 +4,8 @@ import { Button } from "@/components/ui/button";
 import { data } from "../data-pegawai/data";
 
 const AbsensiPage = async () => {
-  // const url = process.env.BASE_URL;
-  const res = await fetch(`https://pf189nf4-3000.asse.devtunnels.ms/api`);
+  const url = process.env.BASE_URL;
+  const res = await fetch(`${url}/api/v1/pegawai`)
   const resJson = await res.json();
   return (
     <main className="container mx-auto py-4">
