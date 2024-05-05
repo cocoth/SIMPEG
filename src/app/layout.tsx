@@ -4,6 +4,7 @@ import "@/css/globals.css";
 import { fajllaOne, lobster, poppins, ubuntu } from "@/lib/fonts"
 import SideBar from "@/components/navbar/SideBar";
 import Navbar from "@/components/navbar/Navbar";
+import { checkLogin } from "@/utils/checkLogin";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,18 +18,23 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const login = checkLogin()
   return (
     <html lang="en">
       <body
         className={`${poppins.variable} ${ubuntu.variable} ${lobster.variable} ${fajllaOne.variable}`}
       >
-        <section className="flex ">
-          <SideBar />
-          <div className="flex flex-col w-full">
-            <Navbar />
-            {children}
-          </div>
-        </section>
+        {login ? (
+          <section className="flex ">
+            <SideBar />
+            <div className="flex flex-col w-full">
+              <Navbar />
+              {children}
+            </div>
+          </section>
+        ):(
+          children
+        )}
       </body>
     </html>
   );

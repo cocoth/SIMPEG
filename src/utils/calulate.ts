@@ -17,7 +17,7 @@ type calculateTunjanganProps = {
   };
 };
 
-export const useCalculateSalary = async (
+export const calculateSalary = async (
   id: number
 ): Promise<calculateSalaryProps | null> => {
   const pegawai = await prisma.pegawai.findUnique({
@@ -43,7 +43,7 @@ export const useCalculateSalary = async (
     fasilitas,
   };
 };
-export const useCalculateTunjangan = async (
+export const calculateAllowance = async (
   id: number,
   presentage: number
 ): Promise<number | null> => {
@@ -55,3 +55,18 @@ export const useCalculateTunjangan = async (
   const tunjangan = pegawai.gaji_pokok * (presentage / 100);
   return tunjangan;
 };
+export const calculateAttendance = async(id: number, attendance: number)=>{
+    try{
+        const pegawai = await prisma.pegawai.update({
+            where:{id},
+            data: {
+                kehadiran:{
+                    increment: attendance
+            }}
+        })
+        if(!pegawai)return null
+        return pegawai
+    }catch(error){
+        return error
+    }
+}
