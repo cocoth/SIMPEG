@@ -12,8 +12,9 @@ import {
 import { Button } from "../ui/button";
 import { ArrowUpDown, MoreHorizontal } from "lucide-react";
 import { Checkbox } from "../ui/checkbox";
+import { Pegawai } from "@prisma/client";
 
-export const columns: ColumnDef<dataPegawai>[] = [
+export const columns: ColumnDef<Pegawai>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -40,19 +41,32 @@ export const columns: ColumnDef<dataPegawai>[] = [
   },
   {
     accessorKey: "no",
-    header: () => <div className="text-center"> No </div>,
+    header: ({ column }) => {
+      return (
+        <Button
+          variant={"ghost"}
+          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+          No
+          <ArrowUpDown className="ml-2 h-4 w-4" />
+        </Button>
+      );
+    },
     cell: ({ row }) => {
-      const nomer = parseFloat(row.getValue("no"));
+      const nomer = row.index + 1
       return <div className="text-center font-medium">{nomer}</div>;
     },
   },
   {
     accessorKey: "nama",
     header: ({ column }) => {
+      const isAsc = column.getIsSorted() === "asc"
       return (
         <Button
           variant={"ghost"}
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
+          onClick={() => {
+            column.toggleSorting(!isAsc)
+          }
+          }>
           Nama
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
@@ -82,9 +96,19 @@ export const columns: ColumnDef<dataPegawai>[] = [
   },
   {
     accessorKey: "status",
-    cell:({row}) => {
-      
-    } 
+    header: 'Status',
+    cell: ({ row }) => {
+      const status = row.original.status
+      const lowerStatus = status.toLowerCase()
+      const color = lowerStatus === 'aktif' ? 'text-green-500' :
+        lowerStatus === 'tidak aktif' ? 'text-red-500' :
+          lowerStatus === 'cuti' && 'text-blue-500'
+      return (
+        <div className={`${color}`}>
+          {lowerStatus}
+        </div>
+      )
+    }
   },
   {
     id: "actions",

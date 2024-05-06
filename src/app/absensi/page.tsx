@@ -16,7 +16,7 @@ const AbsensiPage = async () => {
         <Button>Upload</Button>
       </div>
       <div className="mt-2 px-4 py-4 border border-1 border-black rounded shadow-md">
-        <DataTable columns={columnsAbsensi} data={data} />
+        <DataTable columns={columnsAbsensi} data={resJson} />
       </div>
     </main>
   );

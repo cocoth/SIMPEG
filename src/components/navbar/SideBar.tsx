@@ -57,9 +57,13 @@ const SideBar = () => {
         <div className="h-[0.5px] w-full bg-white shadow-md mb-2" />
         {items.length ? (
           <nav className="grid grid-flow-row gap-1 w-full capitalize">
-            {items.map((item, index) =>
+            {items.map((item, i) =>
               item.children ? (
-                <Accordion type="single" collapsible>
+                <Accordion 
+                key={`Acordion-Key-${item.title}-[${i}]`}
+                type="single" 
+                collapsible
+                >
                   <AccordionItem value={item.title} className="border-b-0">
                     <AccordionTrigger
                       className={`animate-accordion-up flex text-white justify-between space-y-0 px-2 h-10 hover:bg-preset-mainVisbilty hover:no-underline rounded-lg  `}>
@@ -76,9 +80,9 @@ const SideBar = () => {
                     {/* Drop Down Style Nav */}
                     <AccordionContent>
                       <div className="ml-6 flex flex-col space-y-1">
-                        {item.children.map((child, index) => (
+                        {item.children.map((child, j) => (
                           <Link
-                            key={index}
+                            key={`${j}${child.link}`}
                             href={child.link || "/"}
                             className={`flex w-full items-center py-2 px-2 rounded-lg hover:bg-preset-mainVisbilty 
                             ${
@@ -98,7 +102,7 @@ const SideBar = () => {
                 item.link && (
                   <div className="flex">
                     <Link
-                      key={index}
+                      key={`link-item-[${i}-${item.link}:else]`}
                       href={item.link}
                       className={`flex text-xb w-full items-center py-2 px-2 rounded-lg hover:bg-preset-mainVisbilty 
                           ${

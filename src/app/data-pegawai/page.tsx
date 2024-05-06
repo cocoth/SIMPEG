@@ -4,21 +4,24 @@ import { useRouter } from "next/navigation";
 // Data Table
 import { columns } from "@/components/tables/Columns";
 import { DataTable } from "@/components/tables/DataTable";
-import { data } from "./data";
+import { useEffect, useState } from "react";
+import { Pegawai } from '@prisma/client'
+import { getDataPegawai } from "@/utils/fetchData";
+// import { data } from "./data";
 export default function Home() {
   const router = useRouter();
-  // const path = usePathname();
   const handleCellClick = (cell: any) => {
     const id = cell.row.original;
     console.log(id);
     router.push(`/details/pegawai?id=${id}`);
   };
+  const [data, setData] = useState<Pegawai[]>([])
+  const fetchData = async()=>{
+    const res = await getDataPegawai('/api/v1/pegawai')
+    setData(res)
+  }
+  useEffect(()=>{fetchData()},[])
 
-  // const fetchData = async () => {
-  //   const res = await fetch("https://pf189nf4-3000.asse.devtunnels.ms/api");
-  //   return res.json();
-  // };
-  // const datas = fetchData();
   return (
     <main>
       <section className="bg-[#f8f9fe]">

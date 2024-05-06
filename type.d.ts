@@ -12,7 +12,7 @@ export type dataPegawai = {
   gaji_pokok: number;
   tunjangan: number;
   potongan_gaji: number;
-  status: "Aktif" | "Tidak Aktif";
+  status: "Aktif" | "Tidak Aktif" | "Cuti" | "Ijin";
   kehadiran: "Hadir" | "Terlambat" | "Izin" | "Cuti";
   cuti: number;
   fasilitas: fasilitasProps[];
