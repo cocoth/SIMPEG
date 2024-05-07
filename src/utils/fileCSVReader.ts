@@ -8,7 +8,6 @@ export const CSVReader = (file: File): Promise<any[]> => {
       const rowsToLower = rows.map((row) =>
         row.map((item) => item.toLowerCase())
       );
-      //  const cleanRows = rowsToLower.filter(row=>row.some(item=>item.trim() !== ''))
       const cleanRows = rowsToLower
         .map((row) => row.map((item) => item.trim().replace(/\r/g, "")))
         .filter((row) => row.some((item) => item !== ""));
@@ -27,10 +26,39 @@ export const CSVReader = (file: File): Promise<any[]> => {
       console.log({ cleanRows0: cleanRows[0] });
       console.log({ isHeader });
       if (isHeader.every(Boolean)) {
-        rowsToLower.slice(1);
-        resolve(rowsToLower);
+        const RTLS = rowsToLower.slice(1);
+        resolve(RTLS);
         console.log({ rowsToLower });
       }
+    };
+    reader.onerror = (err) => reject(err);
+    reader.readAsText(file);
+  });
+};
+
+export const CSVtoJSON = (file: File): Promise<any[]> => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      if (!e.target) return reject(new Error("Failed to read file!"));
+      const res = e.target.result as string;
+      const rows = res.split("\n").map((row) => row.split(";"));
+      const rowsToLower = rows.map((row) =>
+        row.map((item) => item.toLowerCase())
+      );
+      const headers = rowsToLower[0].map((header) => header.trim());
+      const cleanRows = rows
+        .map((row) => row.map((item) => item.trim().replace(/\r/g, "")))
+        .filter((row) => row.some((item) => item !== ""));
+      const data = cleanRows.slice(1).map((row) => {
+        const obj: any = {};
+        row.forEach((item, index) => {
+          const key = headers[index];
+          obj[key] = item.trim();
+        });
+        return obj;
+      });
+      resolve(data);
     };
     reader.onerror = (err) => reject(err);
     reader.readAsText(file);
