@@ -53,7 +53,9 @@ export const CSVtoJSON = (file: File): Promise<any[]> => {
       const data = cleanRows.slice(1).map((row) => {
         const obj: any = {};
         row.forEach((item, index) => {
-          const key = headers[index];
+          let key = headers[index];
+          key = key.replace(/\./g, '')
+          //if(key === "no._telp") key = key.replace(/\./g, '') // just in case code on above doesnt work
           obj[key] = item.trim();
         });
         return obj;
