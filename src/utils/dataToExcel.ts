@@ -1,6 +1,11 @@
-"use client";
 import * as XLSX from "xlsx";
-import { useEffect, useState } from "react";
+
+const fetchingData = async ()=>{
+  const url = process.env.BASE_URL || "http://localhost:3000"
+  const res = await fetch(`${url}/api/v1/pegawai`)
+  const resJson = await res.json()
+  return resJson
+}
 
 export const generateTemplateExcel = (): Blob => {
   const headers = [
@@ -35,9 +40,8 @@ export const generateTemplateExcel = (): Blob => {
 
 export const downloadDataExcel = async (): Promise<Blob> => {
     try{
-        const res = await fetch("/api/v1/pegawai")
-        const resJson = await res.json()
-        const worksheet = XLSX.utils.json_to_sheet(resJson);
+        const res = await fetchingData()
+        const worksheet = XLSX.utils.json_to_sheet(res);
         const workbook = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(workbook, worksheet, "Data-Pegawai");
         const excelBuffer = XLSX.write(workbook, {

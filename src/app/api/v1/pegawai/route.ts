@@ -7,12 +7,12 @@ export const GET = async (req: NextRequest) => {
   try {
     const res = await prisma.pegawai.findMany({
       include: {
-        fasilitas: true
+        fasilitas: true,
       },
     });
     return NextResponse.json(res);
   } catch (error) {
-    return NextResponse.json('failed to get data!', {status: 404})
+    return NextResponse.json({ error: "failed to get data!" }, { status: 500 });
   }
 };
 
@@ -22,40 +22,39 @@ export const POST = async (req: NextRequest) => {
     const pegawai = await prisma.pegawai.create({
       data: { ...body },
     });
-    return NextResponse.json(pegawai, {status: 201});
+    return NextResponse.json(pegawai, { status: 201 });
   } catch (error) {
-    return NextResponse.json('POST data error!', {status: 404})
+    return NextResponse.json({ error: "POST data error!" }, { status: 500 });
   }
 };
 
-export const PATCH = async(req: NextRequest)=>{
-  try {
-    const body: Pegawai = await req.json()
-    const { id } = body
-    const pegawai = await prisma.pegawai.update({
-      where: {id},
-      data:{
-        ...body
-      }
-    })
-    return NextResponse.json(pegawai, {status: 200})
-  } catch (error) {
-    return NextResponse.json('PATCH data error!', {status: 404})
-    
-  }
-}
-
-export const DELETE = async(req: NextRequest)=>{
+export const PATCH = async (req: NextRequest) => {
   try {
     const body: Pegawai = await req.json();
-    const { id } = body
-    const pegawai = await prisma.pegawai.delete({
-      where:{
-        id
+    const { id } = body;
+    const pegawai = await prisma.pegawai.update({
+      where: { id },
+      data: {
+        ...body,
       },
     });
-    return NextResponse.json(pegawai, {status: 204});
+    return NextResponse.json(pegawai, { status: 200 });
   } catch (error) {
-    return NextResponse.json('error to delete!', {status: 404})
+    return NextResponse.json({ error: "PATCH data error!" }, { status: 500 });
   }
-}
+};
+
+export const DELETE = async (req: NextRequest) => {
+  try {
+    const body: Pegawai = await req.json();
+    const { id } = body;
+    const pegawai = await prisma.pegawai.delete({
+      where: {
+        id,
+      },
+    });
+    return NextResponse.json(pegawai, { status: 204 });
+  } catch (error) {
+    return NextResponse.json({ error: "error to delete!" }, { status: 500 });
+  }
+};
