@@ -11,12 +11,12 @@ import {
 } from "@/components/ui/card";
 import { TabsProfil } from "@/components/tabs/TabsProfil";
 
-const DetailPegawai = () => {
+const DetailPegawai = ({ params }: { params: { id: string } }) => {
   return (
     <main>
       <section className="px-4 py-4 bg-[#f8f9fe]">
         <div className="overflow-x-auto mb-4">
-          <h1 className="font-sans font-bold text-xl">Detail Pegawai</h1>
+          <h1 className="font-sans font-bold text-xl">Detail Pegawai {params.id}</h1>
         </div>
         <div className="flex justify-between w-full max-h-max">
           <div className="w-2/6 h-full">
